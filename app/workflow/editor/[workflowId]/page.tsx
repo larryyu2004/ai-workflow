@@ -12,7 +12,6 @@ async function page({ params }: { params: { workflowId: string } }) {
     return <div>unauthenticated</div>;
   }
 
-
   const workflow = await prisma.workflow.findUnique({
     where: {
       id: workflowId,
@@ -24,6 +23,24 @@ async function page({ params }: { params: { workflowId: string } }) {
     return <div>Workflow not found</div>;
   }
 
+  /*
+  <Editor workflow={workflow} /> {
+    <FlowEditor workflow={workflow} /> {
+      <NodeComponent (props: NodeProps)/> {
+        <NodeCard /> {
+          <NodeHeader />
+          <NodeInputs /> {
+            <NodeParamField /> {
+              <StringParam />
+              <BrowserInstanceParam />
+            }
+          }
+          <NodeOutputs />
+        }
+      }
+    }
+  }
+  */
   return <Editor workflow={workflow} />;
 }
 
