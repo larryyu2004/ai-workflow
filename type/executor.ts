@@ -11,3 +11,7 @@ export type Environment = {
     }
   >;
 };
+
+export type ExecutionEnvironment = {
+  getInput(name: string): string;
+};

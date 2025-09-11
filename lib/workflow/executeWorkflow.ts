@@ -7,7 +7,7 @@ import { waitFor } from "../helper/waitFor";
 import { AppNode } from "@/type/appNode";
 import { TaskRegistry } from "./task/registry";
 import { ExecutorRegistry } from "./executor/registry";
-import { Environment } from "@/type/executor";
+import { Environment, ExecutionEnvironment } from "@/type/executor";
 
 export async function ExecuteWorkflow(executionId: string) {
   const execution = await prisma.workflowExecution.findUnique({
@@ -177,7 +177,12 @@ async function executePhase(
   if (!runFn) {
     return false;
   }
-  return await runFn(environment);
+
+  const executionEnvironment: ExecutionEnvironment = createExecutionEnvironment(
+    node,
+    environment
+  );
+  return await runFn(executionEnvironment);
 }
 
 function setupEnvironmentForPhase(node: AppNode, environment: Environment) {
@@ -186,8 +191,30 @@ function setupEnvironmentForPhase(node: AppNode, environment: Environment) {
   for (const input of inputs) {
     const inputValue = node.data.inputs[input.name];
     if (inputValue) {
+      /*
+      environment = {
+        phases: {
+          node.id: {
+            inputs: {
+              input.name: input value,
+              input.name: input value
+            }
+            outputs: {
+              output.name: output value,
+              output.name: output value
+            }
+          }
+        }
+      }
+       */
       environment.phases[node.id].inputs[input.name] = inputValue;
       continue;
     }
   }
+}
+
+function createExecutionEnvironment(node: AppNode, environment: Environment) {
+  return {
+    getInput: (name: string) => environment.phases[node.id]?.inputs[name],
+  };
 }
