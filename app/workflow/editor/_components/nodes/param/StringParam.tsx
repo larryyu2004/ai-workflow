@@ -39,6 +39,7 @@ function StringParam({
         value={internalValue}
         placeholder="Enter Value Here"
         onChange={(e: any) => setInternalValue(e.target.value)}
+        // When the component is on blur, update the the node param value
         onBlur={(e: any) => updateNodeParamValue(e.target.value)}
       />
       {param.helperText && (
