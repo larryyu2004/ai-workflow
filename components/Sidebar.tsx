@@ -13,6 +13,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import UserAvailableCreditsBadge from "./UserAvailableCreditsBadge";
 
 const routes = [
   {
@@ -51,7 +52,9 @@ const DesktopSidebar = () => {
         <Logo />
       </div>
 
-      <div className="p-2">TODO CRIDITS</div>
+      <div className="p-2">
+        <UserAvailableCreditsBadge />
+      </div>
 
       <div className="flex flex-col p-2 gap-2">
         {routes.map((route) => (
@@ -80,7 +83,7 @@ export function MobileSidebar() {
     routes.find(
       (route) => route.href.length > 1 && pathname.includes(route.href)
     ) || routes[0];
-    
+
   return (
     <div className="block border-separate bg-background md:hidden">
       <nav className="container flex items-center justify-between px-8">
@@ -94,6 +97,7 @@ export function MobileSidebar() {
             className="w-[400px] sm:w-[540px] space-y-4"
             side={"left"}>
             <Logo />
+            <UserAvailableCreditsBadge />
             <div className="flex flex-col gap-1">
               {" "}
               {routes.map((route) => (
