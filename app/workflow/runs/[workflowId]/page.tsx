@@ -3,6 +3,7 @@ import Topbar from "../../editor/_components/topbar/Topbar";
 import { Suspense } from "react";
 import { InboxIcon, Loader2Icon } from "lucide-react";
 import { waitFor } from "@/lib/helper/waitFor";
+import ExecutionsTable from "./_component/ExecutionsTable";
 
 export default function ExecutionPage({
   params,
@@ -26,13 +27,13 @@ export default function ExecutionPage({
             <Loader2Icon size={30} className="animate-spin stroke-primary" />
           </div>
         }>
-        <ExecutionsTable workflowId={params.workflowId} />
+        <ExecutionsTableWarpper workflowId={params.workflowId} />
       </Suspense>
     </div>
   );
 }
 
-async function ExecutionsTable({ workflowId }: { workflowId: string }) {
+async function ExecutionsTableWarpper({ workflowId }: { workflowId: string }) {
   const executions = await GetWorkflowExecutions(workflowId);
   if (!executions) {
     return <div>No data</div>;
@@ -58,5 +59,5 @@ async function ExecutionsTable({ workflowId }: { workflowId: string }) {
     );
   }
 
-  return <pre>{JSON.stringify(executions, null, 4)}</pre>;
+  return <ExecutionsTable workflowId={workflowId} initialData={executions} />
 }
