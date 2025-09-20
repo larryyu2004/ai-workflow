@@ -99,7 +99,14 @@ export default function ExecutionViewer({
           <ExecutionLabel
             icon={CircleDashedIcon}
             label="Status"
-            value={query.data?.status}
+            value={
+              <div className="font-semibold capitalize flex gap-2 items-center">
+                <PhaseStatusBadge
+                  status={query.data?.status as ExecutionPhaseStatus}
+                />
+                <span>{query.data?.status}</span>
+              </div>
+            }
           />
           {/* Started at label */}
           <ExecutionLabel
@@ -129,7 +136,7 @@ export default function ExecutionViewer({
           <ExecutionLabel
             icon={CoinsIcon}
             label="Credits consumed"
-            value={<ReactCountUpWrapper value={creditsConsumed}/>}
+            value={<ReactCountUpWrapper value={creditsConsumed} />}
           />
         </div>
         <Separator />
