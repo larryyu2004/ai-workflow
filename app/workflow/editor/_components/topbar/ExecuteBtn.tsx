@@ -34,7 +34,6 @@ export default function ExecuteBtn({ workflowId }: { workflowId: string }) {
             // Client side validation!
             return;
           }
-          console.table(plan)
           mutation.mutate({
             workflowId: workflowId,
             flowDefinition: JSON.stringify(toObject()),
