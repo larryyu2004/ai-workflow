@@ -226,6 +226,7 @@ async function executePhase(
   environment: Environment,
   logCollector: LogCollector
 ): Promise<boolean> {
+  waitFor(1000)
   const runFn = ExecutorRegistry[node.data.type];
   if (!runFn) {
     logCollector.error(`not found executor for ${node.data.type}`)
