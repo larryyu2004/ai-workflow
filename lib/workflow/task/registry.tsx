@@ -6,6 +6,7 @@ import { WorkflowTask } from "@/type/workflow";
 import { FillInputTask } from "./FillInput";
 import { ClickElementTask } from "./ClickElement";
 import { WaitForElementTask } from "./WaitForElement";
+import { DeliverViaWebhookTask } from "./DeliverViaWebhook";
 
 // export type TaskType = "LAUNCH_BROWSER" | "PAGE_TO_HTML" | "EXTRACT_TEXT_FROM_ELEMENT";
 type Registry = {
@@ -18,5 +19,6 @@ export const TaskRegistry: Registry = {
   EXTRACT_TEXT_FROM_ELEMENT: ExtractTextFromElementTask,
   FILL_INPUT: FillInputTask,
   CLICK_ELEMENT: ClickElementTask,
-  WAIT_FOR_ELEMENT: WaitForElementTask
+  WAIT_FOR_ELEMENT: WaitForElementTask,
+  DELIVER_VIA_WEBHOOK: DeliverViaWebhookTask
 };
