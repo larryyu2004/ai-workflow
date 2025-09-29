@@ -10,6 +10,7 @@ import { DeliverViaWebhookTask } from "./DeliverViaWebhook";
 import { ExtractDataWithAITask } from "./ExtractDataWithAI";
 import { ReadPropertyFromJsonTask } from "./ReadPropertyFromJson";
 import { AddPropertyToJsonTask } from "./AddPropertyToJson";
+import { NavgateUrlTask } from "./NavgateUrl";
 
 // export type TaskType = "LAUNCH_BROWSER" | "PAGE_TO_HTML" | "EXTRACT_TEXT_FROM_ELEMENT";
 type Registry = {
@@ -27,4 +28,5 @@ export const TaskRegistry: Registry = {
   EXTREAT_DATA_WITH_AI: ExtractDataWithAITask,
   READ_PROPERTY_FROM_JSON: ReadPropertyFromJsonTask,
   ADD_PROPERTY_TO_JSON: AddPropertyToJsonTask,
+  NAVGATE_URL: NavgateUrlTask,
 };
