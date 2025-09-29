@@ -18,7 +18,13 @@ export default function TaskMenu() {
         type="multiple"
         className="w-full"
         // Expand defaultValue automatically
-        defaultValue={["extraction", "interactions", "timing", "results", "storage"]}>
+        defaultValue={[
+          "extraction",
+          "interactions",
+          "timing",
+          "results",
+          "storage",
+        ]}>
         <AccordionItem value="interactions">
           <AccordionTrigger className="font-bold">
             User interactions
@@ -46,6 +52,7 @@ export default function TaskMenu() {
           </AccordionTrigger>
           <AccordionContent className="flex flex-col gap-1">
             <TaskMenuBtn taskType={TaskType.READ_PROPERTY_FROM_JSON} />
+            <TaskMenuBtn taskType={TaskType.ADD_PROPERTY_TO_JSON} />
           </AccordionContent>
         </AccordionItem>
 
