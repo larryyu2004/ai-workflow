@@ -5,6 +5,10 @@ import { Period } from "@/type/analytics";
 import { waitFor } from "@/lib/helper/waitFor";
 import { Skeleton } from "@/components/ui/skeleton";
 import { GetStatsCardsValues } from "@/actions/analytics/getStatsCardsValues";
+import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from "lucide-react";
+import StatsCard from "./_components/StatsCard";
+import { GetWorkflowExecutionStats } from "@/actions/analytics/getWorkflowExecutionStats";
+import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 
 const Homepage = ({
   searchParams,
@@ -25,7 +29,17 @@ const Homepage = ({
           <PeriodSelectorWrapper selectedPeriod={period} />
         </Suspense>
       </div>
-      <StatsCards selectedPeriod={period} />
+      <div className="h-full py-6 flex flex-col gap-4">
+        <Suspense fallback={<StatsCardSkeleton />}>
+          <StatsCards selectedPeriod={period} />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="w-full h-[300px]" />}>
+          <StatsExecutionStatus selectedPeriod={period} />
+        </Suspense>
+        <Suspense fallback={<Skeleton className="w-full h-[300px]" />}>
+          <CreditsUsageInPeriod selectedPeriod={period} />
+        </Suspense>
+      </div>
     </div>
   );
 };
@@ -41,7 +55,54 @@ async function PeriodSelectorWrapper({
 
 async function StatsCards({ selectedPeriod }: { selectedPeriod: Period }) {
   const data = await GetStatsCardsValues(selectedPeriod);
-  return <pre>{JSON.stringify(data, null, 4)}</pre>;
+  return (
+    <div className="grid gap-3 lg:gap-8 lg:grid-cols-3 min-h-[120px]">
+      <StatsCard
+        title="Workflow executions"
+        value={data.workflowExecutions}
+        icon={CirclePlayIcon}
+      />
+      <StatsCard
+        title="Phase executions"
+        value={data.phaseExecutions}
+        icon={WaypointsIcon}
+      />
+      <StatsCard
+        title="Credits comsumed"
+        value={data.creditsConsumed}
+        icon={CoinsIcon}
+      />
+    </div>
+  );
+}
+
+function StatsCardSkeleton() {
+  return (
+    <div className="grid gap-3 lg:gap-8 lg:grid-cols-3">
+      {[1, 2, 3].map((i) => (
+        <Skeleton key={i} className="w-full min-h-[120px]" />
+      ))}
+    </div>
+  );
+}
+
+async function StatsExecutionStatus({
+  selectedPeriod,
+}: {
+  selectedPeriod: Period;
+}) {
+  const data = await GetWorkflowExecutionStats(selectedPeriod);
+  return <ExecutionStatusChart data={data}/>
+}
+
+async function CreditsUsageInPeriod({
+  selectedPeriod,
+}: {
+  selectedPeriod: Period;
+}) {
+  const data = await GetWorkflowExecutionStats(selectedPeriod);
+  return <pre>{JSON.stringify(data, null, 4)}</pre>
 }
 
 export default Homepage;
+
