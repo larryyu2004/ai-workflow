@@ -11,6 +11,7 @@ import { ExtractDataWithAITask } from "./ExtractDataWithAI";
 import { ReadPropertyFromJsonTask } from "./ReadPropertyFromJson";
 import { AddPropertyToJsonTask } from "./AddPropertyToJson";
 import { NavgateUrlTask } from "./NavgateUrl";
+import { ScrollToElementTask } from "./ScrollToElement";
 
 // export type TaskType = "LAUNCH_BROWSER" | "PAGE_TO_HTML" | "EXTRACT_TEXT_FROM_ELEMENT";
 type Registry = {
@@ -29,4 +30,5 @@ export const TaskRegistry: Registry = {
   READ_PROPERTY_FROM_JSON: ReadPropertyFromJsonTask,
   ADD_PROPERTY_TO_JSON: AddPropertyToJsonTask,
   NAVGATE_URL: NavgateUrlTask,
+  SCROLL_TO_ELEMENT: ScrollToElementTask
 };
