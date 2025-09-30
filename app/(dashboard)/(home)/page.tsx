@@ -9,6 +9,8 @@ import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from "lucide-react";
 import StatsCard from "./_components/StatsCard";
 import { GetWorkflowExecutionStats } from "@/actions/analytics/getWorkflowExecutionStats";
 import ExecutionStatusChart from "./_components/ExecutionStatusChart";
+import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
+import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
 const Homepage = ({
   searchParams,
@@ -92,7 +94,7 @@ async function StatsExecutionStatus({
   selectedPeriod: Period;
 }) {
   const data = await GetWorkflowExecutionStats(selectedPeriod);
-  return <ExecutionStatusChart data={data}/>
+  return <ExecutionStatusChart data={data} />;
 }
 
 async function CreditsUsageInPeriod({
@@ -100,9 +102,14 @@ async function CreditsUsageInPeriod({
 }: {
   selectedPeriod: Period;
 }) {
-  const data = await GetWorkflowExecutionStats(selectedPeriod);
-  return <pre>{JSON.stringify(data, null, 4)}</pre>
+  const data = await GetCreditUsageInPeriod(selectedPeriod);
+  return (
+    <CreditUsageChart
+      data={data}
+      title="Daily credits spent"
+      description="Daily credit consumed in selected period"
+    />
+  );
 }
 
 export default Homepage;
-
