@@ -79,7 +79,6 @@ export default function CreditUsageChart({
               content={<ChartTooltipContent className="w-[250px]" />}
             />
             <Bar
-              type={"bump"}
               fillOpacity={0.8}
               radius={[0, 0, 4, 4]}
               fill="var(--color-success)"
@@ -88,7 +87,7 @@ export default function CreditUsageChart({
               stackId={"a"}
             />
             <Bar
-              type={"bump"}
+              
               fillOpacity={0.8}
               radius={[4, 4, 0, 0]}
               fill="var(--color-failed)"
