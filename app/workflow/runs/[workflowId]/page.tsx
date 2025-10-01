@@ -5,6 +5,8 @@ import { InboxIcon, Loader2Icon } from "lucide-react";
 import { waitFor } from "@/lib/helper/waitFor";
 import ExecutionsTable from "./_component/ExecutionsTable";
 
+export const dynamic = "force-dynamic";
+
 export default function ExecutionPage({
   params,
 }: {
