@@ -17,6 +17,9 @@ import { Period } from "@/type/analytics";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "./_components/CreditUsageChart";
 import { GetUserPurchaseHistory } from "@/actions/billing/getUserPurchaseHistory";
+
+export const dynamic = "force-dynamic";
+
 export default function BillingPage() {
   return (
     <div className="mx-auto p-4 space-y-8">

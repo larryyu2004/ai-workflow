@@ -8,6 +8,8 @@ import { GetCredentialsForUser } from "@/actions/credentials/getCredentialsForUs
 import { formatDistanceToNow } from "date-fns";
 import DeleteCredentialDialog from "./_components/DeleteCredentialDialog";
 
+export const dynamic = "force-dynamic";
+
 export default function CredentialsPage() {
   return (
     <div className="flex flex-1 flex-col h-full">
