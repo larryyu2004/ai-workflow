@@ -18,7 +18,7 @@ import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeri
 import CreditUsageChart from "./_components/CreditUsageChart";
 import { GetUserPurchaseHistory } from "@/actions/billing/getUserPurchaseHistory";
 
-export const dynamic = "force-dynamic";
+
 
 export default function BillingPage() {
   return (

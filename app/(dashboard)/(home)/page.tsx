@@ -12,7 +12,7 @@ import ExecutionStatusChart from "./_components/ExecutionStatusChart";
 import { GetCreditUsageInPeriod } from "@/actions/analytics/getCreditUsageInPeriod";
 import CreditUsageChart from "../billing/_components/CreditUsageChart";
 
-export const dynamic = "force-dynamic";
+
 
 const Homepage = ({
   searchParams,

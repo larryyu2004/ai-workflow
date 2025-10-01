@@ -10,7 +10,7 @@ import {
 import { timingSafeEqual } from "crypto";
 import parser from "cron-parser";
 
-export const dynamic = "force-dynamic";
+
 
 
 function isValidSecret(secret: string) {
