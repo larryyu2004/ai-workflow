@@ -1,3 +1,4 @@
+"use client"
 import { getAvailableCredits } from "@/actions/billing/getAvailableCredits";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +12,7 @@ const UserAvailableCreditsBadge = () => {
   const query = useQuery({
     queryKey: ["user-avaliable-credits"],
     queryFn: () => getAvailableCredits(),
-    refetchInterval: 30 * 1000, // 30 secon ds
+    refetchInterval: 30 * 1000, // 30 seconds
   });
 
   return (
