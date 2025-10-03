@@ -9,7 +9,7 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from '@clerk/nextjs'
+} from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,17 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl={'/sign-in'} appearance={{
-      elements: {
-        formButtonPrimary: "bg-primary hover:bg-primary/90 test-sm !shadow-none"
-      }
-    }}>
     <html lang="en">
       <body className={inter.className}>
-        <AppProviders>{children}</AppProviders>
+        <ClerkProvider
+          afterSignOutUrl={"/sign-in"}
+          appearance={{
+            elements: {
+              formButtonPrimary:
+                "bg-primary hover:bg-primary/90 test-sm !shadow-none",
+            },
+          }}>
+          <AppProviders>{children}</AppProviders>
+          <Toaster richColors />
+        </ClerkProvider>
       </body>
-      <Toaster richColors />
     </html>
-    </ClerkProvider>
   );
 }
