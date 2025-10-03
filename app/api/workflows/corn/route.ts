@@ -2,7 +2,7 @@ import { getAppUrl } from "@/lib/helper/appUrl";
 import prisma from "@/lib/prisma";
 import { WorkflowStatus } from "@/type/workflow";
 
-
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request) {
   const now = new Date();
