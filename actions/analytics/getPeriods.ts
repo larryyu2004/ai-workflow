@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 export async function GetPeriods() {
   const { userId } = auth();
   if (!userId) {
-    throw new Error("unathenticated");
+    throw new Error("unauthenticated");
   }
 
   const years = await prisma.workflowExecution.aggregate({
